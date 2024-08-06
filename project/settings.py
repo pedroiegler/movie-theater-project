@@ -1,6 +1,9 @@
 import os
+from decouple import config
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECRET_KEY = '!c=6ehu(kqrv^jc$ddgknpqq%3)253c1r*v1tb_!3=n!r2ya4m'
 
@@ -55,8 +58,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT"),
     }
 }
 
@@ -107,5 +114,3 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 100
 }
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
