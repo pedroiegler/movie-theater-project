@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Genre, Movie, Rating
+from ..models import Genre, Movie
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,7 +8,6 @@ class GenreSerializer(serializers.ModelSerializer):
 
 class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(many=True)
-    poster = serializers.ImageField(allow_null=False, required=True)
     average_rating = serializers.SerializerMethodField()
 
     class Meta:
@@ -29,10 +28,3 @@ class MovieSerializer(serializers.ModelSerializer):
         return obj.average_rating()
 
     
-class RatingSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    movie = serializers.StringRelatedField()
-
-    class Meta:
-        model = Rating
-        fields = ['id', 'user', 'movie', 'rating']
