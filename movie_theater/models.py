@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from movie_theater.api.choices import *
 
 class Genre(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
@@ -23,8 +24,8 @@ class Movie(models.Model):
     poster = models.ImageField(upload_to='movie_theater/uploaded_images/posters', null=False, blank=False)
     trailer_url = models.URLField(blank=True, null=True)
     in_theaters = models.BooleanField(default=False)
-    classification = models.CharField(max_length=10, null=False, blank=False)
-    language = models.CharField(max_length=50, null=True, blank=True)
+    classification = models.CharField(max_length=10, null=False, blank=False, choices=CLASSIFICATION_CHOICES)
+    language = models.CharField(max_length=50, null=True, blank=True, choices=LANGUAGE_CHOICES)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
 
@@ -124,12 +125,6 @@ class TicketPrice(models.Model):
         ordering = ['updated_on']
     
 class Session(models.Model):
-    FORMAT_CHOICES = [
-        ('2D', '2D'),
-        ('3D', '3D'),
-        ('IMAX', 'IMAX'),
-    ]
-
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     date = models.DateField(null=False, blank=False)
@@ -147,11 +142,6 @@ class Session(models.Model):
         ordering = ['updated_on']
     
 class Reservation(models.Model):
-    STATUS_CHOICES = [
-        ('confirmed', 'Confirmed'),
-        ('cancelled', 'Cancelled'),
-    ]
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     session = models.ForeignKey(Session, on_delete=models.CASCADE)
     full_tickets = models.PositiveIntegerField(default=0, null=False, blank=False)
@@ -183,18 +173,6 @@ class ReservedSeat(models.Model):
     
 
 class Payment(models.Model):
-    PAYMENT_METHOD_CHOICES = [
-        ('credit_card', 'Credit Card'),
-        ('debit_card', 'Debit Card'),
-        ('pix', 'PIX'),
-    ]
-
-    PAYMENT_STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('completed', 'Completed'),
-        ('failed', 'Failed'),
-    ]
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)

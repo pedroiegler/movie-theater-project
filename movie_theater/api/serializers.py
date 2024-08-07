@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Genre, Movie
+from ..models import Genre, Movie, Rating
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,7 +12,7 @@ class MovieSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ['id', 'title', 'description', 'release_date', 'duration', 'genres', 'director', 'cast', 'poster', 'trailer_url', 'average_rating']
+        fields = ['id', 'title', 'description', 'release_date', 'duration', 'genres', 'director', 'cast', 'poster', 'trailer_url', 'average_rating', 'classification', 'language']
     
     def create(self, validated_data):
         genres_data = validated_data.pop('genres', [])
@@ -28,3 +28,10 @@ class MovieSerializer(serializers.ModelSerializer):
         return obj.average_rating()
 
     
+class RatingSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    movie = serializers.StringRelatedField()
+
+    class Meta:
+        model = Rating
+        fields = ['id', 'user', 'movie', 'rating']
