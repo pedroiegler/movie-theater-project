@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from ..models import Genre, Movie, Rating
+from ..models import Genre, Movie, Rating, Comment, Address, MovieTheater
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = ['id', 'name']
+        fields = "__all__"
 
 class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(many=True)
@@ -26,12 +26,45 @@ class MovieSerializer(serializers.ModelSerializer):
     
     def get_average_rating(self, obj):
         return obj.average_rating()
-
     
 class RatingSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField()
-    movie = serializers.StringRelatedField()
-
     class Meta:
         model = Rating
-        fields = ['id', 'user', 'movie', 'rating']
+        fields = "__all__"
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = "__all__"
+
+class AddressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Address
+        fields = "__all__"
+
+class MovieTheaterSerializer(serializers.ModelSerializer):
+    address = AddressSerializer()
+
+    class Meta:
+        model = MovieTheater
+        fields = "__all__"
+
+    def create(self, validated_data):
+        address_data = validated_data.pop("address", None)
+        if address_data:
+            address_instance = Address.objects.create(**address_data)
+            validated_data["address"] = address_instance
+        return super().create(validated_data)
+    
+    def update(self, instance, validated_data):
+        address_data = validated_data.pop("address", None)
+        if address_data:
+            if instance.address:
+                address_instance = instance.address
+                for key, value in address_data.items():
+                    setattr(address_instance, key, value)
+                address_instance.save()
+            else:
+                address_instance = Address.objects.create(**address_data)
+                validated_data["address"] = address_instance
+        return super().update(instance, validated_data)
