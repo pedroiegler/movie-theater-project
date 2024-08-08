@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import Genre, Movie, Rating, Comment, Address, MovieTheater
+from ..models import *
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -68,3 +68,33 @@ class MovieTheaterSerializer(serializers.ModelSerializer):
                 address_instance = Address.objects.create(**address_data)
                 validated_data["address"] = address_instance
         return super().update(instance, validated_data)
+
+class RoomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Room
+        fields = "__all__"
+        
+class TicketPriceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TicketPrice
+        fields = "__all__"
+
+class SessionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Session
+        fields = "__all__"
+
+class ReservationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = "__all__"
+
+class ReservedSeatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ReservedSeat
+        fields = "__all__"
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = "__all__"

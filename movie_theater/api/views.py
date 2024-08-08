@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from ..models import Genre, Movie, Rating, Comment, Address, MovieTheater
-from .serializers import GenreSerializer, MovieSerializer, RatingSerializer, CommentSerializer, AddressSerializer, MovieTheaterSerializer
+from ..models import *
+from .serializers import *
 
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
@@ -25,3 +25,27 @@ class AddressViewSet(viewsets.ModelViewSet):
 class MovieTheaterViewSet(viewsets.ModelViewSet):
     queryset = MovieTheater.objects.all()
     serializer_class = MovieTheaterSerializer
+
+class RoomViewSet(viewsets.ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+
+class TicketPriceViewSet(viewsets.ModelViewSet):
+    queryset = TicketPrice.objects.all()
+    serializer_class = TicketPriceSerializer
+
+class SessionViewSet(viewsets.ModelViewSet):
+    queryset = Session.objects.all()
+    serializer_class = SessionSerializer
+
+class ReservationViewSet(viewsets.ModelViewSet):
+    queryset = Reservation.objects.all()
+    serializer_class = ReservationSerializer
+
+class ReservedSeatViewSet(viewsets.ModelViewSet):
+    queryset = ReservedSeat.objects.all()
+    serializer_class = ReservedSeatSerializer
+
+class PaymentViewSet(viewsets.ModelViewSet):
+    queryset = Payment.objects.all()
+    serializer_class = PaymentSerializer
