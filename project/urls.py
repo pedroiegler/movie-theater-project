@@ -2,8 +2,9 @@ from django.contrib import admin
 from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework.permissions import AllowAny
+from rest_framework.authentication import TokenAuthentication  
 
-# Configuração do Swagger
 schema_view = get_schema_view(
     openapi.Info(
         title="Movie Theater API",
@@ -14,6 +15,8 @@ schema_view = get_schema_view(
         license=openapi.License(name="BSD License"),
     ),
     public=True,
+    permission_classes=(AllowAny,),
+    authentication_classes=(TokenAuthentication,),
 )
 
 urlpatterns = [
