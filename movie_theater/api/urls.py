@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import *
 
@@ -15,5 +15,8 @@ router.register(r'session', SessionViewSet)
 router.register(r'reservation', ReservationViewSet)
 router.register(r'reserved-seat', ReservedSeatViewSet)
 router.register(r'payment', PaymentViewSet)
+router.register(r'user', UserViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),   
+]
