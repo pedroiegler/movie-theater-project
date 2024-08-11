@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth.models import User
 from ..models import *
 
@@ -112,3 +113,32 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
+class LogoutSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
+
+    def validate(self, attrs):
+        refresh_token = attrs.get('refresh')
+        if not refresh_token:
+            raise serializers.ValidationError("Refresh token is required.")
+        self.token = refresh_token
+        return attrs
+    
+    def save(self, **kwargs):
+        try:
+            RefreshToken(self.token).blacklist()
+        except TokenError as e:
+            if 'Token is blacklisted' in str(e):
+                self.fail('token_blacklisted', error_message="The provided refresh token has already been blacklisted.")
+            elif 'Token is expired' in str(e):
+                self.fail('token_expired', error_message="The provided refresh token has expired.")
+            else:
+                self.fail('token_invalid', error_message="The provided refresh token is invalid.")
+    
+    def fail(self, key, **kwargs):
+        error_messages = {
+            'token_blacklisted': kwargs.get('error_message', 'The token is blacklisted.'),
+            'token_expired': kwargs.get('error_message', 'The token has expired.'),
+            'token_invalid': kwargs.get('error_message', 'The token is invalid.')
+        }
+        raise serializers.ValidationError(error_messages.get(key, 'Invalid token.'))
