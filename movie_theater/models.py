@@ -21,7 +21,7 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre)
     director = models.CharField(max_length=100, null=True, blank=True)
     cast = models.TextField(help_text="Comma-separated list of actor names", null=True, blank=True)
-    poster = models.ImageField(upload_to='movie_theater/uploaded_images/posters', null=False, blank=False)
+    poster = models.ImageField(upload_to='movie_theater/uploaded_images/posters', null=True, blank=True)
     trailer_url = models.URLField(blank=True, null=True)
     in_theaters = models.BooleanField(default=False)
     classification = models.CharField(max_length=10, null=False, blank=False, choices=CLASSIFICATION_CHOICES)

@@ -11,6 +11,7 @@ class GenreSerializer(serializers.ModelSerializer):
 class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(many=True)
     average_rating = serializers.SerializerMethodField()
+    poster = serializers.ImageField(required=False) 
 
     class Meta:
         model = Movie
