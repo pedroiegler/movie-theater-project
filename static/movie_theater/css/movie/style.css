@@ -1,0 +1,12 @@
+.list-movie-wraper{
+    width: 100%;
+    margin-top: 30px;
+}
+
+.list-movie-single{
+    transition: .2s;
+}
+
+.list-movie-single:hover{
+    transform: scale(1.02);
+}

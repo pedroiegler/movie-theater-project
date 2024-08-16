@@ -8,7 +8,11 @@
         <title>{% block title %}{% endblock title %} | {% trans "movie theater" %} </title>
     </head>
     <body>
-        {% block content %}{% endblock content %}
+        {% include "movie_theater/global/header.html" %}
+        <div class="center">
+            {% block content %}{% endblock content %}
+        </div>
+        
         {% block scripts %}{% endblock scripts %}
     </body>
 </html>
