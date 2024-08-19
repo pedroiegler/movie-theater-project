@@ -16,3 +16,34 @@ html, body{
     padding: 0 2%;
     margin: 0 auto;
 }
+
+  /* Dropdown Menu in Light Mode */
+  #dropdownMenu {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  header.dark-mode {
+    background-color: #1e1e1e;
+  }
+  
+  /* Dropdown Menu in Dark Mode */
+  header.dark-mode #dropdownMenu {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+  }
+  
+  header.dark-mode #dropdownMenu a {
+    color: #e0e0e0;
+  }
+  
+  header.dark-mode #dropdownMenu a:hover {
+    background-color: #333333;
+  }
+  

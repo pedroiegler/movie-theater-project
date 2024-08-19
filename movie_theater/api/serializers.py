@@ -9,7 +9,7 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class MovieSerializer(serializers.ModelSerializer):
-    genres = GenreSerializer(many=True)
+    genres = serializers.PrimaryKeyRelatedField(queryset=Genre.objects.all(), many=True)
     average_rating = serializers.SerializerMethodField()
     poster = serializers.ImageField(required=False) 
 
@@ -21,9 +21,7 @@ class MovieSerializer(serializers.ModelSerializer):
         genres_data = validated_data.pop('genres', [])
         movie = Movie.objects.create(**validated_data)
         
-        for genre_data in genres_data:
-            genre, created = Genre.objects.get_or_create(**genre_data)
-            movie.genres.add(genre)
+        movie.genres.set(genres_data)  # Adiciona os IDs diretamente à relação ManyToMany
         
         return movie
     

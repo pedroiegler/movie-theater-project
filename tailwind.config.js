@@ -5,7 +5,9 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require('@tailwindcss/forms'),
     require('daisyui'), 
+    require('preline/plugin'),
   ],
   daisyui: {
     themes: ["light"], 
