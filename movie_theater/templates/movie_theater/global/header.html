@@ -1,9 +1,8 @@
-<header class="bg-white">
+<header class="text-white" style="background-color: #282729;">
     <div class="mx-auto center px-4 sm:px-6 lg:px-8">
       <div class="flex h-24 items-center justify-between">
-        <div class="md:flex md:items-center md:gap-12">
+        <div class="md:flex md:items-center md:gap-3">
           <a class="block text-blue-800" href="#">
-            <span class="sr-only">Home</span>
             <i class="ri-film-fill text-3xl"></i>
           </a>
         </div>
@@ -11,53 +10,45 @@
         <div class="hidden md:block">
           <nav aria-label="Global">
             <ul class="flex items-center gap-6 text-sm">
-              <li><a class="text-gray-700 transition hover:text-gray-950" href="#">Página Inicial</a></li>
+              <li><a class="transition text-sm hover:text-gray-200" href="#">Página Inicial</a></li>
               <li class="relative">
-                <!-- Trigger Dropdown -->
-                <button id="dropdownButton" class="text-gray-700 transition hover:text-gray-950 flex items-center focus:outline-none">
+                <button id="dropdownButton" class="transition text-sm hover:text-gray-200 flex items-center focus:outline-none">
                   Gerenciar
                   <i class="ri-arrow-down-s-line ml-1"></i>
                 </button>
-                <!-- Dropdown Menu -->
-                <ul id="dropdownMenu" class="absolute hidden bg-white shadow-md rounded-lg mt-2 w-48">
-                  <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="#">Usuários</a></li>
-                  <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="{% url "movie_theater:list-movie" %}">Filmes</a></li>
-                  <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="#">Salas</a></li>
-                  <li><a class="block px-4 py-2 text-gray-700 hover:bg-gray-100" href="#">Sessões</a></li>
+                <ul id="dropdownMenu" style="background-color: #fff;" class="absolute hidden text-gray-950 shadow-md rounded-md mt-2 w-48">
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="#">Usuários</a></li>
+                  <li><hr></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:list-movie" %}">Filmes</a></li>
+                  <li><hr></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="#">Salas</a></li>
+                  <li><hr></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="#">Sessões</a></li>
                 </ul>
               </li>
-              <li><a class="text-gray-700 transition hover:text-gray-950" href="#">Relatórios</a></li>
-              <li><a class="text-gray-700 transition hover:text-gray-950" href="#">Sobre</a></li>
-              <li><a class="text-gray-700 transition hover:text-gray-950" href="#">Contato</a></li>
+              <li><a class="transition text-sm hover:text-gray-200" href="#">Relatórios</a></li>
+              <li><a class="transition text-sm hover:text-gray-200" href="#">Sobre</a></li>
+              <li><a class="transition text-sm hover:text-gray-200" href="#">Contato</a></li>
             </ul>
           </nav>
         </div>
   
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4">
-            <a class="rounded-md bg-blue-800 hover:bg-blue-900 transition px-5 py-2.5 text-sm font-medium text-white shadow" href="#">Entrar</a>
+            <a class="rounded-3xl bg-blue-800 hover:bg-blue-900 transition px-5 py-2.5 text-xs font-medium text-white shadow" href="#">Entrar</a>
             <div class="hidden sm:flex">
-              <a class="rounded-md bg-gray-100 hover:bg-gray-200 transition px-5 py-2.5 text-sm font-medium text-blue-800" href="#">Registrar</a>
+              <a class="rounded-3xl bg-gray-100 hover:bg-gray-200 transition px-5 py-2.5 text-xs font-medium text-blue-800" href="#">Registrar</a>
             </div>
           </div>
+          <a href="#" class="flex items-center gap-2 p-4">
+              <img src="https://randomuser.me/api/portraits/women/50.jpg" class="object-cover w-10 h-10 rounded-full" />
+              <p class="text-xs">
+                  <strong class="block font-medium">Eric Frusciante</strong>
+                  <span> eric@frusciante.com </span>
+              </p>
+          </a>
         </div>
+        
       </div>
     </div>
   </header>
-  
-  <script>
-    const dropdownButton = document.getElementById('dropdownButton');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-  
-    dropdownButton.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('hidden');
-    });
-  
-    // Optional: Close the dropdown if clicked outside
-    document.addEventListener('click', (event) => {
-      if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  </script>
-  

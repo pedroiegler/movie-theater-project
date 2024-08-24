@@ -1,7 +1,15 @@
-var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0MDc1MjUxLCJpYXQiOjE3MjQwNjc3NTEsImp0aSI6ImFmOTRjZDM1MzlkODRlMGQ5ZDFkMjZhNDAwY2RhZjc3IiwidXNlcl9pZCI6MX0.ZWytRzf68pnl0DNJo83qcrE2nLeADHPPUmh1fAPrP9o';
+var token = getToken();
 
-function getAPIResponse(){
-   let url =  "http://127.0.0.1:8000/api/v1/movie/";
+var object_filter = {
+    "limit": 10,
+    "offset": 0,
+}
+
+var current_page = 1;
+
+function getAPIResponse(filters = false) {
+    let filter = filters ? { ...object_filter, ...filters } : object_filter;
+    var url = buildURLWithFilter("http://127.0.0.1:8000/api/v1/movie/", filter);
 
     fetch(url, {
         method: "GET",
@@ -14,15 +22,16 @@ function getAPIResponse(){
             throw new Error('Erro na requisição: ' + response.statusText);
         }
         return response.json();
-        }).then(data => {
-            buildListFromAPI(data);
-        }).catch(error => {
-            console.error('Erro:', error);
-        });
+    }).then(data => {
+        buildListFromAPI(data);
+        attachPaginationEvents();  
+    }).catch(error => {
+        console.error('Erro:', error);
+    });
 } getAPIResponse();
 
-function buildListFromAPI(data){
-    const wrapper = document.getElementById("list-movie-wraper");
+function buildListFromAPI(data) {
+    const wrapper = document.getElementById("list-movie-wrapper");
     let htmlContent = '';
 
     document.getElementById("count-movie").innerText = data.count;
@@ -31,39 +40,56 @@ function buildListFromAPI(data){
     });
 
     wrapper.innerHTML = htmlContent;
+
+    document.getElementById("pagination").innerHTML = buildLinksPagination(data);
+
+    attachPaginationEvents();
+}
+
+function attachPaginationEvents() {
+    document.querySelectorAll("#pagination a[data-page]").forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const page = parseInt(this.getAttribute("data-page"));
+            if (page !== current_page) {
+                current_page = page;
+                object_filter["offset"] = (current_page - 1) * object_filter["limit"];
+
+                let activeFilter = inputSearch.value ? { ...object_filter, search: inputSearch.value } : object_filter;
+
+                getAPIResponse(activeFilter);  
+            }
+        });
+    });
 }
 
 function buildListHTML(movie) {
     let poster = movie.poster ? movie.poster : defaultPosterUrl;
     let classification = movie.classification === 'Livre' ? movie.classification : movie.classification + ' anos';    
-    let formatDateItem = formatDate(movie.release_date, 'pt-BR');
-    
     return `
-        <div id="movie-${movie.id}" onclick="viewMovie(${movie.id})" class="list-movie-single shadow-md shadow-gray-100 hover:shadow-gray-200 rounded-lg p-4 bg-white h-96">
-            <a href="#">
+        <div id="movie-${movie.id}" onclick="viewMovie(${movie.id})" class="list-movie-single shadow-md hover:shadow-gray-200 rounded-lg p-3 bg-white" style="max-width: 100%; box-sizing: border-box;">
+            <a href="#" class="block">
                 <img alt="${movie.title}" src="${poster}" class="h-64 w-full rounded-md object-cover" />
                 <div class="mt-2">
                     <div>
                         <h4 class="text-xs text-gray-500">${classification}</h4>
-                        <h2 class="text-base">${movie.title}</h2>
+                        <h2 class="text-sm" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${movie.title}</h2>
                     </div>
-            
-                    <div class="mt-2 flex gap-5 text-xs">
-                        <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                            <i class="ri-calendar-2-fill text-blue-800 text-lg"></i>
-                            <div class="mt-1.5 sm:mt-0">
-                                <p class="text-gray-500">Lançamento</p>
-                                <p class="font-medium">${formatDateItem}</p>
+
+                    <div class="mt-2 flex flex-row sm:flex-row sm:gap-4 text-xs">
+                        <div class="flex items-center sm:gap-2 mt-2 sm:mt-0">
+                            <i class="ri-star-fill text-blue-800 text-base"></i>
+                            <div class="ml-2">
+                                <p class="text-gray-500 font-xs">Avaliação</p>
+                                <p class="font-xs">${movie.average_rating}</p>
                             </div>
                         </div>
-            
-                        <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                            <i class="ri-star-fill text-blue-800 text-lg"></i>
-                            <div class="mt-1.5 sm:mt-0">
-                                <p class="text-gray-500">Avaliação</p>
-                                <p class="font-medium">${movie.average_rating}</p>
-                            </div>
-                        </div>
+                        ${movie.in_theaters ? 
+                            `<div class="flex items-center sm:gap-2 mt-2 sm:mt-0">
+                                <i class="ri-checkbox-circle-line text-blue-800 text-base"></i>
+                                <p class="text-gray-500 font-xs">Em cartaz</p>
+                            </div>`
+                        : ''}
                     </div>
                 </div>
             </a>
@@ -115,3 +141,45 @@ function clearForm() {
         genreSelect.selectedIndex = -1; 
     }
 }
+
+const defaultPosterUrl = "{% static 'movie_theater/images/image-empty.png' %}";
+
+let inputSearch = document.getElementById('Search');
+
+inputSearch.addEventListener('input', function() {
+    const query = this.value;
+    let last_offset = object_filter["offset"];
+    let newfilter = { ...object_filter }; 
+    
+    if(query) {
+        object_filter["offset"] = 0;  
+        newfilter["search"] = query;  
+    } else {
+        newfilter = { ...object_filter }; 
+    }
+
+    getAPIResponse(newfilter);
+    object_filter["offset"] = last_offset; 
+});
+
+document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const selectedGenres = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+            .map(checkbox => checkbox.id.replace('genre-', ''));
+        
+        console.log(selectedGenres);
+    });
+});
+
+document.querySelector('button[style]').addEventListener('click', function() {
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+    getAPIResponse(); 
+});
+
+document.querySelectorAll('input[name="radio-classification"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const selectedClassification = document.querySelector('input[name="radio-classification"]:checked').id.replace('classification-', '');
+
+        console.log(selectedClassification);
+    });
+});

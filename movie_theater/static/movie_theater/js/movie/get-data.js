@@ -16,7 +16,7 @@ function getData() {
         formData.append('poster', poster);
     }
 
-    const genreSelect = document.getElementById('genre');
+    const genreSelect = document.getElementById('field-genre'); 
     const genresAsIntegers = Array.from(genreSelect.selectedOptions).map(option => option.value);
     genresAsIntegers.forEach(genreId => {
         formData.append('genres', genreId);

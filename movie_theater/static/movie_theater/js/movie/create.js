@@ -1,4 +1,4 @@
-var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0MDc1MjUxLCJpYXQiOjE3MjQwNjc3NTEsImp0aSI6ImFmOTRjZDM1MzlkODRlMGQ5ZDFkMjZhNDAwY2RhZjc3IiwidXNlcl9pZCI6MX0.ZWytRzf68pnl0DNJo83qcrE2nLeADHPPUmh1fAPrP9o';
+var token = getToken();
 
 function showModalCreate(){
     const modal = document.getElementById("my_modal_1");
@@ -11,7 +11,6 @@ function showModalCreate(){
     document.getElementById("btn-delete").style.display = "none";
     
     clearForm();
-    createMovie();
 }
 
 
@@ -25,8 +24,8 @@ function createMovie() {
         }
     });
 
-    if (!allFieldsFilled) {
-        
+    if(!allFieldsFilled){
+        alert("Preencha os campos obrigatórios");
     } else {
         closeModal("my_modal_1");
         Swal.fire({

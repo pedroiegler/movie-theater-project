@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwindcss -i ./movie_theater/static/movie_theater/css/style.css -o ./movie_theater/static/movie_theater/css/dist/style.css --watch"
+    "build": "tailwindcss -i ./movie_theater/static/movie_theater/css/style.css -o ./movie_theater/static/movie_theater/css/dist/style.css"
   },
   "repository": {
     "type": "git",

@@ -5,9 +5,8 @@
             type="text"
             id="Search"
             placeholder="Pesquisar..."
-            class="w-full rounded-md border-gray-200 p-3 pe-10 shadow-sm sm:text-sm"
+            class="w-full rounded-md border-gray-200 p-3 pe-10 shadow-sm sm:text-xs"
         />
-
         <span class="absolute inset-y-0 end-0 grid w-10 place-content-center">
             <button type="button" class="text-gray-600 hover:text-gray-700">
                 <span class="sr-only">Search</span>
@@ -16,52 +15,52 @@
         </span>
     </div>
     <details class="overflow-hidden rounded-lg border border-gray-200 [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex cursor-pointer items-center justify-between gap-2 bg-white p-3 text-gray-900 transition">
-            <span class="text-sm font-medium">Gênero</span>
+        <summary class="flex cursor-pointer items-center justify-between gap-2 bg-white py-2 px-3 text-gray-900 transition">
+            <span class="text-xs font-medium">Gênero</span>
             <i class="ri-arrow-down-s-line ml-1"></i>
         </summary>
   
         <div class="border-t border-gray-200 bg-white">
-            <header class="flex items-center justify-between p-4">
-                <span class="text-sm text-gray-700">0 Selecionados</span>
-                <button type="button" class="text-sm text-gray-900 underline underline-offset-4">Resetar</button>
+            <header class="flex items-center justify-between py-2 px-3">
+                <span class="text-xs text-gray-700">0 Selecionados</span>
+                <button type="button" style="font-size: 0.65rem;" class="text-gray-900 underline underline-offset-4">Resetar</button>
             </header>
     
-            <ul class="space-y-1 border-t border-gray-200 p-4">
+            <ul class="space-y-1 border-t border-gray-200 p-3">
                 <li>
-                    <label for="FilterInStock" class="inline-flex items-center gap-2">
-                        <input type="checkbox" id="FilterInStock" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Ação (5+)</span>
+                    <label for="genre-action" class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="genre-action" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Ação (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="checkbox" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Aventura (3+)</span>
+                    <label for="genre-adventure" class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="genre-adventure" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Aventura (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="checkbox" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Drama (2+)</span>
+                    <label for="genre-drama" class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="genre-drama" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Drama (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="checkbox" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Comédia (1+)</span>
+                    <label for="genre-comedy" class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="genre-comedy" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Comédia (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="checkbox" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Terror (2+)</span>
+                    <label for="genre-horror" class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="genre-horror" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Terror (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="checkbox" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Ficção Científica (1+)</span>
+                    <label for="genre-sci-fi" class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="genre-sci-fi" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Ficção Científica (n+)</span>
                     </label>
                 </li>
             </ul>
@@ -69,47 +68,53 @@
     </details>
     
     <details class="overflow-hidden rounded-lg border border-gray-200 [&_summary::-webkit-details-marker]:hidden">
-        <summary class="flex cursor-pointer items-center justify-between gap-2 bg-white p-3 text-gray-900 transition">
-            <span class="text-sm font-medium">Classificação</span>
+        <summary class="flex cursor-pointer items-center justify-between gap-2 bg-white py-2 px-3 text-gray-900 transition">
+            <span class="text-xs font-medium">Classificação</span>
             <i class="ri-arrow-down-s-line ml-1"></i>
         </summary>
   
         <div class="border-t border-gray-200 bg-white">
-            <ul class="space-y-1 border-t border-gray-200 p-4">
+            <ul class="space-y-1 p-3">
                 <li>
-                    <label for="FilterInStock" class="inline-flex items-center gap-2">
-                        <input type="radio" id="FilterInStock" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">Livre (5+)</span>
+                    <label for="classification-all" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-all" name="radio-classification" class="size-3 rounded border-gray-300" checked />
+                        <span class="text-xs font-normal text-gray-700">Todos</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="radio" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">10 anos (3+)</span>
+                    <label for="classification-free" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-free" name="radio-classification" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">Livre (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="radio" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">12 anos (2+)</span>
+                    <label for="classification-10" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-10" name="radio-classification" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">10 anos (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="radio" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">14 anos (1+)</span>
+                    <label for="classification-12" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-12" name="radio-classification" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">12 anos (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="radio" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">16 anos (2+)</span>
+                    <label for="classification-14" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-14" name="radio-classification" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">14 anos (n+)</span>
                     </label>
                 </li>
                 <li>
-                    <label for="FilterPreOrder" class="inline-flex items-center gap-2">
-                        <input type="radio" id="FilterPreOrder" class="size-5 rounded border-gray-300" />
-                        <span class="text-sm font-normal text-gray-700">18 anos (1+)</span>
+                    <label for="classification-16" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-16" name="radio-classification" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">16 anos (n+)</span>
+                    </label>
+                </li>
+                <li>
+                    <label for="classification-18" class="inline-flex items-center gap-2">
+                        <input type="radio" id="classification-18" name="radio-classification" class="size-3 rounded border-gray-300" />
+                        <span class="text-xs font-normal text-gray-700">18 anos (n+)</span>
                     </label>
                 </li>
             </ul>

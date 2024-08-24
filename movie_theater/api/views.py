@@ -1,7 +1,8 @@
-from rest_framework import viewsets, status, generics
+from rest_framework import viewsets, status, generics, filters
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 from ..models import *
 from .serializers import *
 
@@ -14,6 +15,8 @@ class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['title']
 
 class RatingViewSet(viewsets.ModelViewSet):
     queryset = Rating.objects.all()

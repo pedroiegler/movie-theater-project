@@ -46,8 +46,8 @@ function buildItemFromAPI(data) {
     }
 
     let toggleCheckbox = document.getElementById('toggle');
-    if (data.in_theater) {
-        toggleCheckbox.checked = data.in_theater;
+    if (data.in_theaters) {
+        toggleCheckbox.checked = data.in_theaters;
     }
 }
 
