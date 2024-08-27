@@ -1,0 +1,19 @@
+.custom-swal-title {
+    font-size: 22px !important; 
+}
+
+.custom-swal-text {
+    font-size: 17px !important;
+}
+
+.custom-icon-class {
+    font-size: 15px !important;
+}
+
+.custom-button{
+    font-size: 14px !important;
+}
+
+.sub-header-social h2 span{
+    margin-left: 0.5rem !important;
+}

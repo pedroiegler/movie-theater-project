@@ -1,0 +1,12 @@
+{% extends "movie_theater/global/base.html" %}
+{% load i18n %}
+
+{% block title %} Salas {% endblock title %} 
+
+{% block content %}
+    {% include "movie_theater/room/main_content.html" %}
+{% endblock content %}
+
+{% block scripts %}
+    {% include "movie_theater/room/scripts.html" %}
+{% endblock scripts %}

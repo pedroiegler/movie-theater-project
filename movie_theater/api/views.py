@@ -37,6 +37,8 @@ class MovieTheaterViewSet(viewsets.ModelViewSet):
     queryset = MovieTheater.objects.all()
     serializer_class = MovieTheaterSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['name', 'email']
 
 class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()

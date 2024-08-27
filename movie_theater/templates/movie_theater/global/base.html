@@ -5,7 +5,7 @@
 <html lang="en">
     <head>
         {% include "movie_theater/global/head.html" %}
-        <title>{% block title %}{% endblock title %} | {% trans "movie theater" %} </title>
+        <title>{% block title %}{% endblock title %} | Cinema </title>
     </head>
     <body>
         {% include "movie_theater/global/header.html" %}
@@ -13,7 +13,9 @@
 
         <div class="container">
             <div class="center">
-                {% block content %}{% endblock content %}
+                {% comment %} <div class="bg-white rounded-lg" style="padding: 50px 40px; border: 1px solid rgb(229 231 235);"> {% endcomment %}
+                    {% block content %}{% endblock content %}
+                {% comment %} </div> {% endcomment %}
             </div>
         </div>
 

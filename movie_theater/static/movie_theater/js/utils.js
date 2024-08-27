@@ -1,5 +1,5 @@
 function getToken(){
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0NTM1NDk5LCJpYXQiOjE3MjQ1Mjc5OTksImp0aSI6ImUyNGM1NjdkNGM2ZTRkMmU5MDk0N2MzODViZWM0MmYzIiwidXNlcl9pZCI6MX0.oywCo5eH4VEfUbAcq0aUE-kGsg1tz0MroxdBCg-9DXA';
+    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0NzY0MDE1LCJpYXQiOjE3MjQ3NTY1MTUsImp0aSI6ImYyM2EwYTVjNmM5YzQ5MzNhMjZlZWQxYjNkYWM5ZmJhIiwidXNlcl9pZCI6MX0.H2za7V6CBjmx9M6nN_je9TdvnnvIxanRep5tv_loeTQ';
 }
 
 function formatDate(dateString, locale) {
@@ -55,6 +55,7 @@ function buildLinksPagination(response) {
             <li>
                 <a href="#"
                    class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+                   style="border: 1px solid rgb(230, 230, 230);"
                    data-page="${current_page - 1}">
                     <span class="sr-only">Prev Page</span>
                     <i class="ri-arrow-left-s-line"></i>
@@ -74,7 +75,8 @@ function buildLinksPagination(response) {
             html += `
                 <li>
                     <a href="#"
-                       class="block size-8 rounded border border-gray-100 bg-white text-center leading-8 text-gray-900"
+                       class="block size-8 rounded border bg-white text-center leading-8 text-gray-900"
+                       style="border: 1px solid rgb(230, 230, 230);"
                        data-page="${page}">
                         ${page}
                     </a>
@@ -87,7 +89,8 @@ function buildLinksPagination(response) {
         html += `
             <li>
                 <a href="#"
-                   class="inline-flex size-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
+                   class="inline-flex size-8 items-center justify-center rounded border bg-white text-gray-900 rtl:rotate-180"
+                   style="border: 1px solid rgb(230, 230, 230);"
                    data-page="${current_page + 1}">
                     <span class="sr-only">Next Page</span>
                     <i class="ri-arrow-right-s-line"></i>
@@ -98,3 +101,18 @@ function buildLinksPagination(response) {
 
     return html;
 }
+
+function formatDate(date) {
+    const date_init = new Date(date);
+
+    const day = String(date_init.getDate()).padStart(2, '0'); 
+    const month = String(date_init.getMonth() + 1).padStart(2, '0'); 
+    const year = date_init.getFullYear(); 
+
+    const hours = String(date_init.getHours()).padStart(2, '0'); 
+    const minutes = String(date_init.getMinutes()).padStart(2, '0');
+    const seconds = String(date_init.getSeconds()).padStart(2, '0');
+
+    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+

@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./movie_theater/**/*.{html, js}"],
+  content: ["./movie_theater/**/*.{html,js}"], 
   theme: {
     extend: {},
   },

@@ -67,7 +67,7 @@ function buildListHTML(movie) {
     let poster = movie.poster ? movie.poster : defaultPosterUrl;
     let classification = movie.classification === 'Livre' ? movie.classification : movie.classification + ' anos';    
     return `
-        <div id="movie-${movie.id}" onclick="viewMovie(${movie.id})" class="list-movie-single shadow-md hover:shadow-gray-200 rounded-lg p-3 bg-white" style="max-width: 100%; box-sizing: border-box;">
+        <div id="movie-${movie.id}" onclick="viewMovie(${movie.id})" class="list-movie-single rounded-lg p-3 bg-white" style="max-width: 100%; box-sizing: border-box; border: 1px solid rgb(230, 230, 230);">
             <a href="#" class="block">
                 <img alt="${movie.title}" src="${poster}" class="h-64 w-full rounded-md object-cover" />
                 <div class="mt-2">

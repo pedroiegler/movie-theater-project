@@ -4,5 +4,11 @@ from .views import *
 app_name = "movie_theater"
 
 urlpatterns = [
-    path('list-movie/', list_movie, name="list-movie"),
+    path('home/', home, name="home"),
+    path('about/', about, name="about"),
+    path('cinemas/', cinemas, name="cinemas"),
+    path('movies/', movies, name="movies"),
+    path('rooms/', rooms, name="rooms"),
+    path('sessions/', sessions, name="sessions"),
+    path('users/', users, name="users"),
 ]

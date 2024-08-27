@@ -1,0 +1,12 @@
+{% extends "movie_theater/global/base.html" %}
+{% load i18n %}
+
+{% block title %} Sessões {% endblock title %} 
+
+{% block content %}
+    {% include "movie_theater/session/main_content.html" %}
+{% endblock content %}
+
+{% block scripts %}
+    {% include "movie_theater/session/scripts.html" %}
+{% endblock scripts %}

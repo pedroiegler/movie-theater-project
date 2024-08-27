@@ -1,0 +1,12 @@
+{% extends "movie_theater/global/base.html" %}
+{% load i18n %}
+
+{% block title %} Usuários {% endblock title %} 
+
+{% block content %}
+    {% include "movie_theater/user/main_content.html" %}
+{% endblock content %}
+
+{% block scripts %}
+    {% include "movie_theater/user/scripts.html" %}
+{% endblock scripts %}

@@ -27,26 +27,7 @@ function createMovie() {
     if(!allFieldsFilled){
         alert("Preencha os campos obrigatórios");
     } else {
-        closeModal("my_modal_1");
-        Swal.fire({
-            title: 'Cadastrar filme',
-            text: "Você deseja continuar?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: 'rgb(30 64 175)',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim',
-            cancelButtonText: 'Não',
-            customClass: {
-                popup: 'swal2-front'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                submitFormDataCreate(); 
-            } else {
-                openModal("my_modal_1");
-            }
-        });
+        submitFormDataCreate(); 
     }
 }
 
@@ -66,12 +47,6 @@ function submitFormDataCreate() {
         }
         return response.json();
     }).then(data => {
-        Swal.fire(
-            'Cadastrado!',
-            'O filme foi criado com sucesso.',
-            'success'
-        );
-
         closeModal("my_modal_1");
         getAPIResponse(); 
     }).catch(error => {

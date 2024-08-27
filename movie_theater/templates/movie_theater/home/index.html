@@ -1,0 +1,12 @@
+{% extends "movie_theater/global/base.html" %}
+{% load i18n %}
+
+{% block title %} Página Inicial {% endblock title %} 
+
+{% block content %}
+    {% include "movie_theater/home/main_content.html" %}
+{% endblock content %}
+
+{% block scripts %}
+    {% include "movie_theater/home/scripts.html" %}
+{% endblock scripts %}

@@ -1,0 +1,12 @@
+{% extends "movie_theater/global/base.html" %}
+{% load i18n %}
+
+{% block title %} Cinemas {% endblock title %} 
+
+{% block content %}
+    {% include "movie_theater/cinema/main_content.html" %}
+{% endblock content %}
+
+{% block scripts %}
+    {% include "movie_theater/cinema/scripts.html" %}
+{% endblock scripts %}

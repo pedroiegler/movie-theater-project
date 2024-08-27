@@ -61,26 +61,7 @@ function editMovie() {
         }
     });
 
-    closeModal("my_modal_1");
-    Swal.fire({
-        title: 'Editar filme',
-        text: "Você deseja continuar?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: 'rgb(30 64 175)',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Sim',
-        cancelButtonText: 'Não',
-        customClass: {
-            popup: 'swal2-front'
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            submitFormDataUpdate(); 
-        } else {
-            openModal("my_modal_1");
-        }
-    });
+    submitFormDataUpdate(); 
 }
 
 function submitFormDataUpdate() {
@@ -100,13 +81,6 @@ function submitFormDataUpdate() {
         }
         return response.json();
     }).then(data => {
-
-        Swal.fire(
-            'Editado!',
-            'O filme foi editado com sucesso.',
-            'success'
-        );
-
         closeModal("my_modal_1");
         getAPIResponse(); 
     }).catch(error => {

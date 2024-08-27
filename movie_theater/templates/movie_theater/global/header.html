@@ -1,3 +1,4 @@
+{% load static %}
 <header class="text-white" style="background-color: #282729;">
     <div class="mx-auto center px-4 sm:px-6 lg:px-8">
       <div class="flex h-24 items-center justify-between">
@@ -10,41 +11,42 @@
         <div class="hidden md:block">
           <nav aria-label="Global">
             <ul class="flex items-center gap-6 text-sm">
-              <li><a class="transition text-sm hover:text-gray-200" href="#">Página Inicial</a></li>
+              <li><a class="transition text-sm hover:text-gray-200" href="{% url "movie_theater:home" %}">Página Inicial</a></li>
               <li class="relative">
                 <button id="dropdownButton" class="transition text-sm hover:text-gray-200 flex items-center focus:outline-none">
                   Gerenciar
                   <i class="ri-arrow-down-s-line ml-1"></i>
                 </button>
                 <ul id="dropdownMenu" style="background-color: #fff;" class="absolute hidden text-gray-950 shadow-md rounded-md mt-2 w-48">
-                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="#">Usuários</a></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:cinemas" %}">Cinemas</a></li>
                   <li><hr></li>
-                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:list-movie" %}">Filmes</a></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:users" %}">Usuários</a></li>
                   <li><hr></li>
-                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="#">Salas</a></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:movies" %}">Filmes</a></li>
                   <li><hr></li>
-                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="#">Sessões</a></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:rooms" %}">Salas</a></li>
+                  <li><hr></li>
+                  <li><a class="block px-4 py-2 text-xs hover:bg-gray-100 rounded-md" href="{% url "movie_theater:sessions" %}">Sessões</a></li>
                 </ul>
               </li>
               <li><a class="transition text-sm hover:text-gray-200" href="#">Relatórios</a></li>
-              <li><a class="transition text-sm hover:text-gray-200" href="#">Sobre</a></li>
-              <li><a class="transition text-sm hover:text-gray-200" href="#">Contato</a></li>
+              <li><a class="transition text-sm hover:text-gray-200" href="{% url "movie_theater:about" %}">Sobre</a></li>
             </ul>
           </nav>
         </div>
   
         <div class="flex items-center gap-4">
           <div class="sm:flex sm:gap-4">
-            <a class="rounded-3xl bg-blue-800 hover:bg-blue-900 transition px-5 py-2.5 text-xs font-medium text-white shadow" href="#">Entrar</a>
+            <a class="rounded bg-blue-800 hover:bg-blue-900 transition px-5 py-2.5 text-xs font-medium text-white shadow" href="#">Entrar</a>
             <div class="hidden sm:flex">
-              <a class="rounded-3xl bg-gray-100 hover:bg-gray-200 transition px-5 py-2.5 text-xs font-medium text-blue-800" href="#">Registrar</a>
+              <a class="rounded bg-gray-100 hover:bg-gray-200 transition px-5 py-2.5 text-xs font-medium text-blue-800" href="#">Registrar</a>
             </div>
           </div>
           <a href="#" class="flex items-center gap-2 p-4">
-              <img src="https://randomuser.me/api/portraits/women/50.jpg" class="object-cover w-10 h-10 rounded-full" />
+              <img src="{% static "movie_theater/images/image-user.jpg" %}" class="object-cover w-10 h-10 rounded-full" />
               <p class="text-xs">
-                  <strong class="block font-medium">Eric Frusciante</strong>
-                  <span> eric@frusciante.com </span>
+                  <strong class="block font-medium">Pedro Iegler</strong>
+                  <span>pedroiegler1601@outlook.com</span>
               </p>
           </a>
         </div>

@@ -1,0 +1,55 @@
+{% load static %}
+
+<div class="flex items-center justify-between mb-6">
+  <div>
+    <h2 class="font-bold text-2xl">Salas</h2>
+    <p class="mt-3 text-sm text-gray-700">Total de <span id="count-room"></span> salas</p>
+  </div>
+  <a id="btn-create-modal" onclick="showModalCreate()" class="rounded bg-blue-800 hover:bg-blue-900 transition px-2 py-1 text-base text-white shadow" href="#"><i class="ri-add-fill"></i></a></div>
+  
+  <div class="w-full bg-gray-200" style="height: 2px;"></div>
+
+  <div class="w-full flex mt-7">
+      <div id="list-room-wrapper" style="max-height: 800px; overflow: auto;" class="w-full">
+        <table class="w-full leading-normal">
+            <thead>
+                <tr>
+                    <th style="background-color: #282729;" class="text-white px-5 py-3 border-b-2 text-left text-sm font-normal">
+                        Nome
+                    </th>
+                    <th style="background-color: #282729;"  class="text-white px-5 py-3 border-b-2 text-left text-sm font-normal">
+                        Total de Assentos
+                    </th>
+                    <th style="background-color: #282729;"  class="text-white px-5 py-3 border-b-2 text-left text-sm font-normal">
+                        Criado em
+                    </th>
+                    <th style="background-color: #282729;" class="text-white px-5 py-3 border-b-2 text-left text-sm font-normal">
+                        Atualizado em
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Sala 1</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">150</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Jan 21, 2020</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p class="text-gray-900 whitespace-no-wrap">Jan 21, 2020</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      <ol id="pagination" class="flex justify-start gap-1 text-xs font-medium mt-10">
+        
+      </ol>
+    </div>
+  </div>
+</div>
+
