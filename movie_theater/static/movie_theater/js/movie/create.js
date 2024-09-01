@@ -19,15 +19,61 @@ function createMovie() {
     let allFieldsFilled = true;
 
     requiredFields.forEach(function(field) {
-        if (!field.value) { 
-            allFieldsFilled = false;
+        if (field.type === 'select-one' || field.type === 'select-multiple') {
+            if (field.value === '') {
+                allFieldsFilled = false;
+            }
+        } else {
+            if (!field.value) {
+                allFieldsFilled = false;
+            }
         }
     });
 
     if(!allFieldsFilled){
-        alert("Preencha os campos obrigatórios");
-    } else {
-        submitFormDataCreate(); 
+        closeModal('my_modal_1');
+        Swal.fire({
+            title: 'Atenção',
+            text: `Preencha os campos obrigatórios`,
+            icon: 'warning',
+            confirmButtonColor: '#1c45ab',
+            confirmButtonText: 'Ok',
+            customClass: {
+                title: 'custom-swal-title',  
+                htmlContainer: 'custom-swal-text',
+                icon: 'custom-icon-class',
+                confirmButton: 'custom-button',
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                openModal('my_modal_1');
+            }
+        });
+    } else{
+        closeModal('my_modal_1');
+        Swal.fire({
+            title: 'Cadastrar filme',
+            text: `Deseja continuar?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1c45ab',
+            cancelButtonColor: '#a30b0b',
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Não',
+            customClass: {
+                title: 'custom-swal-title',  
+                htmlContainer: 'custom-swal-text',
+                icon: 'custom-icon-class',
+                confirmButton: 'custom-button',
+                cancelButton: 'custom-button custom-cancel-button'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                submitFormDataCreate(); 
+            } else{
+                openModal('my_modal_1');
+            }
+        });
     }
 }
 
@@ -47,6 +93,19 @@ function submitFormDataCreate() {
         }
         return response.json();
     }).then(data => {
+        Swal.fire({
+            title: 'Cadastrado!',
+            text: 'O filme foi cadastrado com sucesso.',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#1c45ab',
+            customClass: {
+                title: 'custom-swal-title',  
+                htmlContainer: 'custom-swal-text',
+                icon: 'custom-icon-class',
+                confirmButton: 'custom-button',
+            }
+        });
         closeModal("my_modal_1");
         getAPIResponse(); 
     }).catch(error => {

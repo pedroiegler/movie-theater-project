@@ -1,5 +1,8 @@
 function getData() {
     const formData = new FormData();
+    const movie_theater = getCurrentCinemaID();
+    
+    console.log(movie_theater);
 
     formData.append('title', document.getElementById('field-title').value);
     formData.append('description', document.getElementById('field-description').value);
@@ -10,6 +13,7 @@ function getData() {
     formData.append('language', document.getElementById('field-language').value);
     formData.append('director', document.getElementById('field-director').value);
     formData.append('trailer_url', document.getElementById('field-trailer-url').value);
+    formData.append('movie_theater', movie_theater);
 
     const poster = document.getElementById('field-poster').files[0];
     if (poster) {

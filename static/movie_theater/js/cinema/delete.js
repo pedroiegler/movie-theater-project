@@ -17,7 +17,7 @@ function deleteCinema(id, name){
         }
       }).then((result) => {
         if (result.isConfirmed) {
-            let url = `http://127.0.0.1:8080/api/v1/movie-theater/${id}/`;
+            let url = `http://127.0.0.1:8000/api/v1/movie-theater/${id}/`;
 
             fetch(url, {
                 method: "DELETE",

@@ -77,15 +77,9 @@ function buildListHTML(cinema) {
                 <button class="cursor-pointer" onclick="deleteCinema(${cinema.id}, '${name}')">
                     <i class='ri-delete-bin-7-fill text-xl text-red-700 hover:text-red-800 transform hover:scale-110 transition-transform duration-105'></i>
                 </button>
-                <button class="cursor-pointer" onclick="editCinema(${cinema.id})">
+                <button class="cursor-pointer" onclick="viewCinema(${cinema.id})">
                     <i class='ri-edit-box-fill text-xl text-blue-800 hover:text-blue-900 transform hover:scale-110 transition-transform duration-105'></i>
                 </button>
-            </td>
-            <td class="px-3 py-3 border-b border-gray-200 bg-white text-sm">
-                <div class="flex-shrink-0 w-10 h-10">
-                    <img class="w-full h-full rounded-full object-cover ${logo ? 'bg-gray-800' : ''}"
-                        ${logo ? src="${logo}" : ''} />
-                </div>
             </td>
             <td class="px-3 py-3 border-b border-gray-200 bg-white text-sm">
                 <p class="text-gray-900 whitespace-no-wrap">${name}</p>
@@ -109,30 +103,13 @@ function buildListHTML(cinema) {
 function clearForm() {
     const form = document.querySelector("#my_modal_1 form");
 
-    form.querySelectorAll('input[type="text"], input[type="date"], input[type="url"]').forEach(input => {
+    form.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], input[type="url"]').forEach(input => {
         input.value = '';
-    });
-
-    form.querySelectorAll('select').forEach(select => {
-        select.selectedIndex = 0;
-    });
-
-    form.querySelectorAll('textarea').forEach(textarea => {
-        textarea.value = '';
-    });
-
-    form.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false;
     });
 
     form.querySelectorAll('input[type="file"]').forEach(fileInput => {
         fileInput.value = '';
     });
-
-    const genreSelect = form.querySelector('#genre');
-    if (genreSelect) {
-        genreSelect.selectedIndex = -1; 
-    }
 }
 
 const defaultPosterUrl = "{% static 'movie_theater/images/image-empty.png' %}";

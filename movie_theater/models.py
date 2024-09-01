@@ -20,7 +20,6 @@ class Address(models.Model):
 class MovieTheater(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
-    logo = models.ImageField(upload_to='movie_theater/uploaded_images/logo', null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)

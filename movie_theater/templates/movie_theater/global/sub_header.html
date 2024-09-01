@@ -1,20 +1,25 @@
 <div style="background-color: #1a191a;" class="text-white">
     <div class="center flex justify-between items-center">
-        <h2 class="flex items-center font-light text-sm" style="border-right: 2px solid #282729; padding-right: 20px; height: 40px;">
-            Cinema: <span class="font-normal text-sm name-cinema">Cinema Caffe</span>
-        </h2>
+        <div class="flex items-center text-white">
+            <label for="select-cinema" class="block text-sm font-medium">Cinema:</label>
+            <select name="select-cinema" id="select-cinema" class="w-full rounded-t bg-gray-800 border-0 sm:text-sm select-custom" onchange="handleCinemaSelection(event)">
+                <option value="">Selecione um cinema</option>
+                {% for cinema in cinemas %}
+                    <option value="{{ cinema.id }}">{{ cinema.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
         <div class="flex sub-header-social">
             <h2 class="flex items-center font-light text-sm" style="border-left: 2px solid #282729; padding-left: 20px; padding-right: 20px; height: 40px;">
-                Telefone: <span class="font-normal text-sm">(43) 3546-1681</span>
+                Telefone: <span id="phone-cinema-current" class="font-normal text-sm"></span>
             </h2>
             <h2 class="flex items-center font-light text-sm" style="border-left: 2px solid #282729; padding-left: 20px; padding-right: 20px; height: 40px;">
-                E-mail: <span class="font-normal text-sm">cinema@gmail.com</span>
+                E-mail: <span id="email-cinema-current" class="font-normal text-sm"></span>
             </h2>
             <div class="flex items-center space-x-4" style="border-left: 2px solid #282729; padding-left: 20px; height: 40px;">
                 <h2 class="font-light text-sm">Redes sociais: </h2>
                 <div class="social-links flex">
                     <a href="#" class="text-white"><i class="ri-facebook-circle-fill"></i></a>
-                    <a href="#" class="text-white"><i class="ri-twitter-x-fill"></i></a>
                     <a href="#" class="text-white"><i class="ri-instagram-fill"></i></a>
                 </div>
             </div>

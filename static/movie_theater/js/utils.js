@@ -1,5 +1,5 @@
 function getToken(){
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI0NzY0MDE1LCJpYXQiOjE3MjQ3NTY1MTUsImp0aSI6ImYyM2EwYTVjNmM5YzQ5MzNhMjZlZWQxYjNkYWM5ZmJhIiwidXNlcl9pZCI6MX0.H2za7V6CBjmx9M6nN_je9TdvnnvIxanRep5tv_loeTQ';
+    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MjE5OTg4LCJpYXQiOjE3MjUyMTI0ODgsImp0aSI6IjRlYzg4ZDFlYzRiYjQ2MzY5OWE5MDczNDEyZmJhMzIyIiwidXNlcl9pZCI6MX0.3X9JKagZu_cDDcb2TpmagdAxZDYQvVrQFkDK714Rvsc';
 }
 
 function formatDate(dateString, locale) {
@@ -116,3 +116,69 @@ function formatDate(date) {
     return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
+function handleCinemaSelection(event) {
+    const selectedCinemaId = event.target.value;
+
+    if (selectedCinemaId) {
+        localStorage.setItem('selectedCinemaId', selectedCinemaId);
+        location.reload();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const selectElement = document.getElementById('select-cinema');
+    const storedCinemaId = localStorage.getItem('selectedCinemaId');
+
+    if (storedCinemaId) {
+        selectElement.value = storedCinemaId;
+        loadCinemaInfo(storedCinemaId); 
+    } else {
+        clearCinemaInfo(); 
+    }
+});
+
+function loadCinemaInfo(cinemaId) {
+    const cinemaPhone = localStorage.getItem('cinemaPhone_' + cinemaId);
+    const cinemaEmail = localStorage.getItem('cinemaEmail_' + cinemaId);
+
+    if (cinemaPhone && cinemaEmail) {
+        document.getElementById("phone-cinema-current").innerText = cinemaPhone;
+        document.getElementById("email-cinema-current").innerText = cinemaEmail;
+    } else {
+        fetchCinemaInfo(cinemaId);
+    }
+}
+
+function fetchCinemaInfo(cinemaId) {
+    var url = `http://127.0.0.1:8000/api/v1/movie-theater/${cinemaId}`;
+
+    fetch(url, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${getToken()}`,
+            'Content-Type': 'application/json',
+        },
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na requisição: ' + response.statusText);
+        }
+        return response.json();
+    }).then(data => {
+        document.getElementById("phone-cinema-current").innerText = data.phone_number;
+        document.getElementById("email-cinema-current").innerText = data.email;
+
+        localStorage.setItem('cinemaPhone_' + cinemaId, data.phone_number);
+        localStorage.setItem('cinemaEmail_' + cinemaId, data.email);
+    }).catch(error => {
+        console.error('Erro:', error);
+    });
+}
+
+function clearCinemaInfo() {
+    document.getElementById("phone-cinema-current").innerText = '';
+    document.getElementById("email-cinema-current").innerText = '';
+}
+
+function getCurrentCinemaID(){
+    return localStorage.getItem('selectedCinemaId'); 
+}

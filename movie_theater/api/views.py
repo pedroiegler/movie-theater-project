@@ -5,17 +5,27 @@ from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from ..models import *
 from .serializers import *
+import django_filters
 
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     permission_classes = [IsAuthenticated]
 
+
+class MovieFilter(django_filters.FilterSet):
+    movie_theater = django_filters.NumberFilter(field_name='movie_theater', lookup_expr='exact')
+
+    class Meta:
+        model = Movie
+        fields = ['movie_theater']
+
 class MovieViewSet(viewsets.ModelViewSet):
-    queryset = Movie.objects.all()
+    queryset = Movie.objects.all().order_by('-updated_on')
     serializer_class = MovieSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_class = MovieFilter
     search_fields = ['title']
 
 class RatingViewSet(viewsets.ModelViewSet):
@@ -34,7 +44,7 @@ class AddressViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
 class MovieTheaterViewSet(viewsets.ModelViewSet):
-    queryset = MovieTheater.objects.all()
+    queryset = MovieTheater.objects.all().order_by('-updated_on')
     serializer_class = MovieTheaterSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]

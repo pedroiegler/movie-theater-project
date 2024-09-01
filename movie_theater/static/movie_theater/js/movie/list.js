@@ -8,6 +8,7 @@ var object_filter = {
 var current_page = 1;
 
 function getAPIResponse(filters = false) {
+    object_filter['movie_theater'] = getCurrentCinemaID();
     let filter = filters ? { ...object_filter, ...filters } : object_filter;
     var url = buildURLWithFilter("http://127.0.0.1:8000/api/v1/movie/", filter);
 
@@ -65,19 +66,17 @@ function attachPaginationEvents() {
 
 function buildListHTML(movie) {
     let poster = movie.poster ? movie.poster : defaultPosterUrl;
-    let classification = movie.classification === 'Livre' ? movie.classification : movie.classification + ' anos';    
     return `
         <div id="movie-${movie.id}" onclick="viewMovie(${movie.id})" class="list-movie-single rounded-lg p-3 bg-white" style="max-width: 100%; box-sizing: border-box; border: 1px solid rgb(230, 230, 230);">
             <a href="#" class="block">
                 <img alt="${movie.title}" src="${poster}" class="h-64 w-full rounded-md object-cover" />
                 <div class="mt-2">
                     <div>
-                        <h4 class="text-xs text-gray-500">${classification}</h4>
                         <h2 class="text-sm" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${movie.title}</h2>
                     </div>
 
-                    <div class="mt-2 flex flex-row sm:flex-row sm:gap-4 text-xs">
-                        <div class="flex items-center sm:gap-2 mt-2 sm:mt-0">
+                    <div class="mt-2 flex flex-row sm:flex-row sm:gap-2 text-xs">
+                        <div class="flex items-center sm:gap-1 mt-2 sm:mt-0">
                             <i class="ri-star-fill text-blue-800 text-base"></i>
                             <div class="ml-2">
                                 <p class="text-gray-500 font-xs">Avaliação</p>

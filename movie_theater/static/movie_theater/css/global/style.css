@@ -38,3 +38,22 @@ html, body {
 .name-cinema{
     margin-left: 0.5rem;
 }
+
+.select-custom {
+    background-color: #1a191a;
+    border: none; 
+    color: white;
+    border-radius: 0;
+    padding: 0.5rem 2.5rem 0.5rem 0.5rem; 
+    outline: none !important;
+    margin-left: 0.5rem;
+}
+
+.select-custom:focus {
+    outline: none !important; 
+    box-shadow: none !important; 
+}
+
+.custom-option{
+    padding: 2rem !important;
+}

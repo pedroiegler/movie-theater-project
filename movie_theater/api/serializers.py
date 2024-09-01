@@ -15,13 +15,13 @@ class MovieSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ['id', 'title', 'description', 'release_date', 'duration', 'genres', 'director', 'cast', 'poster', 'trailer_url', 'average_rating', 'classification', 'language', 'in_theaters']
+        fields = ['id', 'title', 'description', 'release_date', 'duration', 'genres', 'director', 'cast', 'poster', 'trailer_url', 'average_rating', 'classification', 'language', 'in_theaters', 'movie_theater']
     
     def create(self, validated_data):
         genres_data = validated_data.pop('genres', [])
         movie = Movie.objects.create(**validated_data)
         
-        movie.genres.set(genres_data)  # Adiciona os IDs diretamente à relação ManyToMany
+        movie.genres.set(genres_data)  
         
         return movie
     
