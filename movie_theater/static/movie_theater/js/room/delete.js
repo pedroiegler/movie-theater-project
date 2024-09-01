@@ -1,7 +1,9 @@
-function deleteCinema(id, name){
+function deleteRoom(){
+    closeModal('my_modal_1');
+    
     Swal.fire({
-        title: 'Você tem certeza?',
-        text: `Remover cinema - ${name}?`,
+        title: 'Deletar sala',
+        text: `Deseja continuar?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#1c45ab',
@@ -15,15 +17,18 @@ function deleteCinema(id, name){
             confirmButton: 'custom-button',
             cancelButton: 'custom-button custom-cancel-button'
         }
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
-            deleteData();
+            deleteData(); 
         }
-    });   
+    });
 }
 
+
 function deleteData(){
-    let url = `http://127.0.0.1:8000/api/v1/movie-theater/${id}/`;
+    let idRoom = localStorage.getItem('id-room');
+
+    let url = `http://127.0.0.1:8000/api/v1/room/${idRoom}/`;
 
     fetch(url, {
         method: "DELETE",
@@ -42,9 +47,12 @@ function deleteData(){
         return response.json();
     })
     .then(data => {
+        if (data) {
+            buildItemFromAPI(data);
+        }
         Swal.fire({
             title: 'Deletado!',
-            text: 'O cinema foi deletado com sucesso.',
+            text: 'A sala foi deletada com sucesso.',
             icon: 'success',
             confirmButtonText: 'Ok',
             confirmButtonColor: '#1c45ab',
@@ -55,9 +63,10 @@ function deleteData(){
                 confirmButton: 'custom-button',
             }
         });
-        document.getElementById(`cinema-${id}`).remove();
+        document.getElementById(`room-${idRoom}`).remove();
+        closeModal("my_modal_1");
     })
     .catch(error => {
         console.error('Erro:', error);
-    }); 
+    });    
 }

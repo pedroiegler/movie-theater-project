@@ -2,8 +2,6 @@ function getData() {
     const formData = new FormData();
     const movie_theater = getCurrentCinemaID();
     
-    console.log(movie_theater);
-
     formData.append('title', document.getElementById('field-title').value);
     formData.append('description', document.getElementById('field-description').value);
     formData.append('release_date', document.getElementById('field-date-release').value);

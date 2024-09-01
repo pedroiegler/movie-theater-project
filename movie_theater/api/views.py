@@ -50,10 +50,21 @@ class MovieTheaterViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['name', 'email']
 
+class RoomFilter(django_filters.FilterSet):
+    movie_theater = django_filters.NumberFilter(field_name='movie_theater', lookup_expr='exact')
+
+    class Meta:
+        model = Room
+        fields = ['movie_theater']
+
 class RoomViewSet(viewsets.ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_class = RoomFilter
+    search_fields = ['name']
+
 
 class TicketPriceViewSet(viewsets.ModelViewSet):
     queryset = TicketPrice.objects.all()

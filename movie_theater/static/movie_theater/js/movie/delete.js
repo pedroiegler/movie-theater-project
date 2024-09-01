@@ -52,6 +52,19 @@ function deleteData(){
         if (data) {
             buildItemFromAPI(data);
         }
+        Swal.fire({
+            title: 'Deletado!',
+            text: 'O filme foi deletado com sucesso.',
+            icon: 'success',
+            confirmButtonText: 'Ok',
+            confirmButtonColor: '#1c45ab',
+            customClass: {
+                title: 'custom-swal-title',  
+                htmlContainer: 'custom-swal-text',
+                icon: 'custom-icon-class',
+                confirmButton: 'custom-button',
+            }
+        });
         document.getElementById(`movie-${idMovie}`).remove();
         closeModal("my_modal_1");
     })

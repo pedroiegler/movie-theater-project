@@ -1,0 +1,39 @@
+<dialog id="my_modal_1" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" style="z-index: 1000;">
+    <div class="modal-box w-full max-w-7xl h-auto bg-white rounded-lg shadow-lg overflow-y-auto" style="z-index: 1000;">
+        <div class="flex items-start justify-between p-5 border-b rounded-t">
+            <h3 class="text-xl font-semibold"><span id="action-room"></span> Sala</h3>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" onclick="closeModal('my_modal_1')">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="p-6 space-y-6 w-full">
+            <form>
+                <div class="grid grid-cols-12 gap-6 mb-6">
+                    <div class="col-span-12 sm:col-span-4">
+                        <div class="flex">
+                            <label for="field-name" class="block text-xs font-medium text-gray-700">Nome</label>
+                            <p class="text-red-600 text-xs ml-1">*</p>
+                        </div>
+                        <input type="text" id="field-name" class="mt-2 w-full text-sm rounded-md border-gray-200 shadow-sm required" />
+                    </div>
+            
+                    <div class="col-span-12 sm:col-span-4">
+                        <div class="flex">
+                            <label for="field-total-seats" class="block text-xs font-medium text-gray-700">Total de Acentos</label>
+                            <p class="text-red-600 text-xs ml-1">*</p>
+                        </div>
+                        <input type="text" id="field-total-seats" class="mt-2 w-full text-sm rounded-md border-gray-200 shadow-sm required" />
+                    </div>
+                </div>
+            
+                <div class="pt-6 pb-6 border-t border-gray-200 rounded-b flex">
+                    <button id="btn-create" onclick="createRoom()" class="text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:bg-blue-800 font-medium rounded text-sm px-5 py-2.5 text-center" type="button">Cadastrar</button>
+                    <button id="btn-edit" onclick="editRoom()" class="text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:bg-blue-800 font-medium rounded text-sm px-5 py-2.5 text-center ml-2" type="button">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</dialog>
