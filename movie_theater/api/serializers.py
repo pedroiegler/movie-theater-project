@@ -103,7 +103,7 @@ class PaymentSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'password', 'email']
+        fields = ['id', 'username', 'password', 'email', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active']
 
     def create(self, validated_data):
         user = User.objects.create_user(

@@ -95,6 +95,8 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['username']
 
 class LogoutAPIView(generics.GenericAPIView):
     serializer_class = LogoutSerializer

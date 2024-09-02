@@ -1,5 +1,5 @@
 function getToken(){
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MjE5OTg4LCJpYXQiOjE3MjUyMTI0ODgsImp0aSI6IjRlYzg4ZDFlYzRiYjQ2MzY5OWE5MDczNDEyZmJhMzIyIiwidXNlcl9pZCI6MX0.3X9JKagZu_cDDcb2TpmagdAxZDYQvVrQFkDK714Rvsc';
+    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MjMzOTE5LCJpYXQiOjE3MjUyMjY0MTksImp0aSI6IjBlNTg5MzFlN2VlYjQzYWRhNjU0NmEzOGNjMTQ2OGU3IiwidXNlcl9pZCI6M30.P-uXiDr_r-BcJuqr4xcGeWazOnSyDSWUVIQ53i3TSlk';
 }
 
 function formatDate(dateString, locale) {
