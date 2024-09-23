@@ -1,5 +1,9 @@
 function getToken(){
-    return 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1MjMzOTE5LCJpYXQiOjE3MjUyMjY0MTksImp0aSI6IjBlNTg5MzFlN2VlYjQzYWRhNjU0NmEzOGNjMTQ2OGU3IiwidXNlcl9pZCI6M30.P-uXiDr_r-BcJuqr4xcGeWazOnSyDSWUVIQ53i3TSlk';
+    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MDk4MjE0LCJpYXQiOjE3MjcwOTA3MTQsImp0aSI6IjYyZTY1NmFiZDdhYzQ3ZWRhYmNhNjc5MmE4YWZiNGQ4IiwidXNlcl9pZCI6NH0.Y_rjWBWxNtJuK8b8jknmNHUMCodkG2ljgy7tQs_k1EM'
+}
+
+function isAuthenticated() {
+    return localStorage.getItem('jwtToken') !== null;
 }
 
 function formatDate(dateString, locale) {
@@ -134,6 +138,20 @@ document.addEventListener('DOMContentLoaded', function () {
         loadCinemaInfo(storedCinemaId); 
     } else {
         clearCinemaInfo(); 
+    }
+
+    if (isAuthenticated()) {
+        document.getElementById('dropdown-management').style.display = 'block';
+        document.getElementById('dropdown-reports').style.display = 'block';
+        document.getElementById('dropdown-info-user').style.display = 'block';
+        document.getElementById('btns-login-register').style.display = 'none';
+    }
+
+    if (!isAuthenticated()) {
+        document.getElementById('dropdown-management').style.display = 'none';
+        document.getElementById('dropdown-reports').style.display = 'none';
+        document.getElementById('dropdown-info-user').style.display = 'none';
+        document.getElementById('btns-login-register').style.display = 'block';
     }
 });
 

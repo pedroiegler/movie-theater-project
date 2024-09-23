@@ -1,15 +1,10 @@
 from django.shortcuts import render
-from django.utils import translation
-from django.utils.translation import get_language
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from ..models import Genre
 from ..api.choices import LANGUAGE_CHOICES, CLASSIFICATION_CHOICES
 
 def home(request):
     return render(request, "movie_theater/home/index.html")
-
-def about(request):
-    return render(request, "movie_theater/about/index.html")
 
 def cinemas(request):
     return render(request, "movie_theater/cinema/index.html")
